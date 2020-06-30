@@ -1,0 +1,1 @@
+<view><view class="{{['cu-list grid','col-'+gridCol,gridBorder?'':'no-border']}}"><block wx:for="{{cuIconList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><block wx:if="{{index<gridCol*2}}"><view class="cu-item"><view><image style="width:90rpx;" src="{{item.cuIcon}}" mode="widthFix"></image></view><text>{{item.name}}</text></view></block></block></view></view>
