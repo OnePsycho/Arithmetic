@@ -36,6 +36,8 @@
   },
   "usingComponents": {
     "base-main": "/pages/main/home",
+    "base-mall": "/pages/mall/home",
+    "base-order": "/pages/order/home",
     "base-about": "/pages/about/home",
     "basics": "/pages/basics/home",
     "components": "/pages/component/home",

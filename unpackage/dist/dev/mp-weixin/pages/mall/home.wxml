@@ -1,0 +1,1 @@
+<view><scroll-view class="page" scroll-y="{{true}}"><cu-custom vue-id="f341af56-1" bgColor="bg-gradual-blue" bind:__l="__l" vue-slots="{{['content']}}"><view slot="content">全部商品</view></cu-custom></scroll-view></view>

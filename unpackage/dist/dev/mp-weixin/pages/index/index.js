@@ -172,7 +172,7 @@ var _default =
 {
   data: function data() {
     return {
-      PageCur: 'basics' };
+      PageCur: 'home' };
 
   },
   methods: {

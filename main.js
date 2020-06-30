@@ -4,6 +4,12 @@ import App from './App'
 import main from './pages/main/home.vue'
 Vue.component('BaseMain',main)
 
+import mall from './pages/mall/home.vue'
+Vue.component('BaseMall',mall)
+
+import order from './pages/order/home.vue'
+Vue.component('BaseOrder',order)
+
 import about from './pages/about/home.vue'
 Vue.component('BaseAbout',about)
 

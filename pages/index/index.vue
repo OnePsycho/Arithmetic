@@ -1,33 +1,33 @@
 <template>
 	<view>
-		<BaseMain v-if="PageCur=='basics'"></BaseMain>
-		<components v-if="PageCur=='component'"></components>
-		<plugin v-if="PageCur=='plugin'"></plugin>
-		<BaseAbout v-if="PageCur=='about'"></BaseAbout>
+		<BaseMain v-if="PageCur=='home'"></BaseMain>
+		<BaseMall v-if="PageCur=='mall'"></BaseMall>
+		<BaseOrder v-if="PageCur=='order'"></BaseOrder>
+		<BaseAbout v-if="PageCur=='my'"></BaseAbout>
 		<view class="cu-bar tabbar bg-white shadow foot">
-			<view class="action" @click="NavChange" data-cur="basics">
+			<view class="action" @click="NavChange" data-cur="home">
 				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/basics' + [PageCur=='basics'?'_cur':''] + '.png'"></image>
+					<image :src="'/static/tabbar/home' + [PageCur=='home'?'_cur':''] + '.png'"></image>
 				</view>
-				<view :class="PageCur=='basics'?'text-green':'text-gray'">首页</view>
+				<view :class="PageCur=='home'?'text-blue':'text-gray'">首页</view>
 			</view>
-			<view class="action" @click="NavChange" data-cur="component">
+			<view class="action" @click="NavChange" data-cur="mall">
 				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/component' + [PageCur == 'component'?'_cur':''] + '.png'"></image>
+					<image :src="'/static/tabbar/mall' + [PageCur == 'mall'?'_cur':''] + '.png'"></image>
 				</view>
-				<view :class="PageCur=='component'?'text-green':'text-gray'">商城</view>
+				<view :class="PageCur=='mall'?'text-blue':'text-gray'">商城</view>
 			</view>
-			<view class="action" @click="NavChange" data-cur="plugin">
+			<view class="action" @click="NavChange" data-cur="order">
 				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/plugin' + [PageCur == 'plugin'?'_cur':''] + '.png'"></image>
+					<image :src="'/static/tabbar/order' + [PageCur == 'order'?'_cur':''] + '.png'"></image>
 				</view>
-				<view :class="PageCur=='plugin'?'text-green':'text-gray'">订单</view>
+				<view :class="PageCur=='order'?'text-blue':'text-gray'">订单</view>
 			</view>
-			<view class="action" @click="NavChange" data-cur="about">
+			<view class="action" @click="NavChange" data-cur="my">
 				<view class='cuIcon-cu-image'>
-					<image :src="'/static/tabbar/about' + [PageCur == 'about'?'_cur':''] + '.png'"></image>
+					<image :src="'/static/tabbar/my' + [PageCur == 'my'?'_cur':''] + '.png'"></image>
 				</view>
-				<view :class="PageCur=='plugin'?'text-green':'text-gray'">我的</view>
+				<view :class="PageCur=='my'?'text-blue':'text-gray'">我的</view>
 			</view>
 		</view>
 	</view>
@@ -37,7 +37,7 @@
 	export default {
 		data() {
 			return {
-				PageCur: 'basics'
+				PageCur: 'home'
 			}
 		},
 		methods: {
