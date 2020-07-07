@@ -27,7 +27,7 @@
 		</view>
 		<!-- 计算部分 -->
 		<view class="calc-box">
-			<view class="calc-box-item" v-for="(item,index) in 9" :key="index" @click="onItemClick(item)">
+			<view class="calc-box-item" v-for="(item,index) in numsList" :key="index" @click="onItemClick(item + 1)">
 				{{ index + 1 }}
 			</view>
 			<view class="calc-box-item" @click="onItemClick('cancel')">C</view>
@@ -61,6 +61,7 @@
 
 		data() {
 			return {
+				numsList:[0,1,2,3,4,5,6,7,8],
 				curAnswer:'',
 				curIndex:0,
 				curProgress:0,
