@@ -1,5 +1,5 @@
 {
-    "name" : "ColorUi for UniApp",
+    "name" : "人生答案之书",
     "appid" : "",
     "description" : "",
     "versionName" : "ColorUi for UniApp 2.1.4",
@@ -47,15 +47,14 @@
     "quickapp" : {},
     /* 快应用特有相关 */
     "mp-weixin" : {
-        /* 小程序特有相关 */
-        "appid" : "",
+        "appid" : "wx21ce1c3c114b8dac",
         "setting" : {
             "urlCheck" : false,
             "es6" : true
         }
     },
     "h5" : {
-        "title" : "ColorUi",
+        "title" : "速算王者",
         "domain" : "",
         "router" : {
             "mode" : "history",

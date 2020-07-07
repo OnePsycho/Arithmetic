@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "base-menu": "/components/BaseMenu",
-    "base-swiper": "/components/BaseSwiper"
-  }
-}

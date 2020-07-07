@@ -111,20 +111,13 @@
 			]
 
 		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
-
 	}
 </script>
 
 <style>
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
-	@import "static/css/iconfont.css";
+	@import "static/css/myFont.css";
 
 	.nav-list {
 		display: flex;

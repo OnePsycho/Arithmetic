@@ -4,25 +4,6 @@ import App from './App'
 import main from './pages/main/home.vue'
 Vue.component('BaseMain',main)
 
-import mall from './pages/mall/home.vue'
-Vue.component('BaseMall',mall)
-
-import order from './pages/order/home.vue'
-Vue.component('BaseOrder',order)
-
-import about from './pages/about/home.vue'
-Vue.component('BaseAbout',about)
-
-import basics from './pages/basics/home.vue'
-Vue.component('basics',basics)
-
-
-import components from './pages/component/home.vue'
-Vue.component('components',components)
-
-import plugin from './pages/plugin/home.vue'
-Vue.component('plugin',plugin)
-
 import cuCustom from './colorui/components/cu-custom.vue'
 Vue.component('cu-custom',cuCustom)
 

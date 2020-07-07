@@ -1,1 +1,8 @@
-<view><scroll-view class="page" scroll-y="{{true}}"><image class="bg-image" src="../../static/bg.png" width="100%"></image><swiper class="{{['card-swiper',dotStyle?'square-dot':'round-dot']}}" indicator-dots="{{true}}" circular="{{true}}" autoplay="{{true}}" interval="5000" duration="500" indicator-color="#8799a3" indicator-active-color="#0081ff" data-event-opts="{{[['change',[['cardSwiper',['$event']]]]]}}" bindchange="__e"><block qq:for="{{swiperList}}" qq:for-item="item" qq:for-index="index" qq:key="index"><swiper-item class="{{[cardCur==index?'cur':'']}}"><view class="swiper-item"><block qq:if="{{item.type=='image'}}"><image src="{{item.url}}" mode="aspectFill"></image></block><block qq:if="{{item.type=='video'}}"><video src="{{item.url}}" autoplay="{{true}}" loop="{{true}}" show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" muted="{{true}}"></video></block></view></swiper-item></block></swiper></scroll-view></view>
+<view class="page"
+    ><image class="bg-light" src="../../static/answer-book-light.png" mode="widthFix"></image><image class="bg-book" src="../../static/answer-book.png" mode="widthFix"></image
+    ><view class="btn-box"
+        ><image src="../../static/answer-book-desc.png" mode="widthFix"></image
+        ><navigator url="../entry/home" open-type="navigate"><image src="../../static/answer-book-btn.png" mode="widthFix"></image></navigator></view
+>
+
+</view>

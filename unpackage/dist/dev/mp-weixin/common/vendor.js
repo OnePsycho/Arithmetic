@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
+
+/***/ 1:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -760,7 +760,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1566,7 +1566,137 @@ var uni$1 = uni;var _default =
 uni$1;exports.default = _default;
 
 /***/ }),
-/* 2 */
+
+/***/ 10:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -7096,7 +7226,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7117,14 +7247,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7200,7 +7330,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7594,7 +7724,8 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -7624,148 +7755,411 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+
+/***/ 33:
+/*!*************************************************!*\
+  !*** E:/Psycho/AnswerBook/static/answerList.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var e = [{
+  zh: "可能",
+  en: "MAYBE" },
+{
+  zh: "保持自己的想法",
+  en: "KEEP YOUR THOUGHTS" },
+{
+  zh: "一切皆好",
+  en: "ALL IS WELL" },
+{
+  zh: "当然",
+  en: "OF COURSE" },
+{
+  zh: "你会为你现在所做的感到高兴",
+  en: "YOULL BE HAPPY YOU DID" },
+{
+  zh: "相信自己",
+  en: "TRUST YOURSELF" },
+{
+  zh: "坚持就会胜利",
+  en: "" },
+{
+  zh: "不要再拖延",
+  en: "" },
+{
+  zh: "不要指望它",
+  en: "" },
+{
+  zh: "心想事成",
+  en: "" },
+{
+  zh: "可能",
+  en: "" },
+{
+  zh: "等待",
+  en: "" },
+{
+  zh: "冷静",
+  en: "" },
+{
+  zh: "少即是多",
+  en: "" },
+{
+  zh: "学会面对",
+  en: "" },
+{
+  zh: "克制",
+  en: "" },
+{
+  zh: "想要就争取吧",
+  en: "" },
+{
+  zh: "严以律己 宽以待人",
+  en: "" },
+{
+  zh: "当局者迷",
+  en: "" },
+{
+  zh: "发挥你的想象力",
+  en: "" },
+{
+  zh: "肯定",
+  en: "" },
+{
+  zh: "是的",
+  en: "" },
+{
+  zh: "谢谢",
+  en: "" },
+{
+  zh: "有风险也有机会",
+  en: "" },
+{
+  zh: "一笑而过",
+  en: "" },
+{
+  zh: "不要幻想太多",
+  en: "" },
+{
+  zh: "付出坚持不懈的努力",
+  en: "" },
+{
+  zh: "不要逃避",
+  en: "" },
+{
+  zh: "勇敢",
+  en: "" },
+{
+  zh: "探索",
+  en: "" },
+{
+  zh: "发挥你的特长",
+  en: "" },
+{
+  zh: "很高兴你做了",
+  en: "" },
+{
+  zh: "毫无疑问",
+  en: "" },
+{
+  zh: "你的行为会改善这件事",
+  en: "" },
+{
+  zh: "且行且思",
+  en: "" },
+{
+  zh: "微乎其微的可能",
+  en: "" },
+{
+  zh: "不要为此感到后悔",
+  en: "" },
+{
+  zh: "道阻且长",
+  en: "" },
+{
+  zh: "学会放手",
+  en: "" },
+{
+  zh: "可怕",
+  en: "" },
+{
+  zh: "不可否认",
+  en: "" },
+{
+  zh: "有阻碍",
+  en: "" },
+{
+  zh: "停止",
+  en: "" },
+{
+  zh: "为什么这么想",
+  en: "" },
+{
+  zh: "你不得不向现实妥协",
+  en: "" },
+{
+  zh: "不要给人添麻烦",
+  en: "" },
+{
+  zh: "荒唐",
+  en: "" },
+{
+  zh: "挽留",
+  en: "" },
+{
+  zh: "你会失望的",
+  en: "" },
+{
+  zh: "认清现实",
+  en: "" },
+{
+  zh: "白费力气",
+  en: "" },
+{
+  zh: "别浪费你的时间",
+  en: "" },
+{
+  zh: "看开一点",
+  en: "" },
+{
+  zh: "事情会朝目标发展",
+  en: "" },
+{
+  zh: "要知道选择太多或太少都很难",
+  en: "" },
+{
+  zh: "相遇",
+  en: "" },
+{
+  zh: "最好再等等",
+  en: "" },
+{
+  zh: "虽然很难，但也值得",
+  en: "" },
+{
+  zh: "不要忘记微笑",
+  en: "" },
+{
+  zh: "自信",
+  en: "" },
+{
+  zh: "会有好转",
+  en: "" },
+{
+  zh: "无解",
+  en: "" },
+{
+  zh: "有点意思",
+  en: "" },
+{
+  zh: "尝试去爱",
+  en: "" },
+{
+  zh: "别压抑自己的天性",
+  en: "" },
+{
+  zh: "自己安静待一会",
+  en: "" },
+{
+  zh: "转移的你注意力",
+  en: "" },
+{
+  zh: "明天会有好事发生",
+  en: "" },
+{
+  zh: "平常心",
+  en: "" },
+{
+  zh: "不要怀疑",
+  en: "" },
+{
+  zh: "全力以赴",
+  en: "" },
+{
+  zh: "快刀斩乱麻",
+  en: "" },
+{
+  zh: "再试一次",
+  en: "" },
+{
+  zh: "请教你最好的朋友",
+  en: "" },
+{
+  zh: "寻求更多的选择",
+  en: "" },
+{
+  zh: "理财",
+  en: "" },
+{
+  zh: "美好的一天",
+  en: "" },
+{
+  zh: "逆水行舟",
+  en: "" },
+{
+  zh: "知足",
+  en: "" },
+{
+  zh: "不要怕",
+  en: "" },
+{
+  zh: "全心全意",
+  en: "" },
+{
+  zh: "不要犹豫",
+  en: "" },
+{
+  zh: "做一次改变",
+  en: "" },
+{
+  zh: "灵活应对",
+  en: "" },
+{
+  zh: "似乎已成事实",
+  en: "" },
+{
+  zh: "正确的预感",
+  en: "" },
+{
+  zh: "小迷糊",
+  en: "" },
+{
+  zh: "有一些重要的事情",
+  en: "" },
+{
+  zh: "一直在寻找什么",
+  en: "" },
+{
+  zh: "爱",
+  en: "" },
+{
+  zh: "本能",
+  en: "" },
+{
+  zh: "也许会迟到",
+  en: "" },
+{
+  zh: "你肯定会获得支持",
+  en: "" },
+{
+  zh: "你肯定会被认同",
+  en: "" },
+{
+  zh: "别失望",
+  en: "" },
+{
+  zh: "顺其自然",
+  en: "" },
+{
+  zh: "不要有偏见",
+  en: "" },
+{
+  zh: "你需要了解更多",
+  en: "" },
+{
+  zh: "别忘记享受乐趣",
+  en: "" },
+{
+  zh: "等待一个更好的机会",
+  en: "" },
+{
+  zh: "最好的事情正在发生",
+  en: "" },
+{
+  zh: "那不值得纠结",
+  en: "" },
+{
+  zh: "立即行动",
+  en: "" },
+{
+  zh: "顺从你的意愿",
+  en: "" },
+{
+  zh: "尽你最大的努力",
+  en: "" },
+{
+  zh: "暂且不要下定论",
+  en: "" },
+{
+  zh: "想念",
+  en: "" },
+{
+  zh: "你祈求的一切顺利",
+  en: "" },
+{
+  zh: "结束倒计时",
+  en: "" },
+{
+  zh: "不要忽略身边的人",
+  en: "" },
+{
+  zh: "对意外要有思想准备",
+  en: "" },
+{
+  zh: "这是你不会忘记的事物",
+  en: "" },
+{
+  zh: "一切依赖于你的选择",
+  en: "" },
+{
+  zh: "你可能会比较悲伤",
+  en: "" },
+{
+  zh: "可能会惹上麻烦",
+  en: "" },
+{
+  zh: "放弃",
+  en: "" },
+{
+  zh: "你大概会受点伤",
+  en: "" },
+{
+  zh: "骗不了自己",
+  en: "" },
+{
+  zh: "表示怀疑",
+  en: "" },
+{
+  zh: "浪费金钱",
+  en: "" },
+{
+  zh: "没有答案",
+  en: "" },
+{
+  zh: "别犯傻了",
+  en: "" },
+{
+  zh: "这个大概会让你哭泣",
+  en: "" },
+{
+  zh: "省省力气吧",
+  en: "" },
+{
+  zh: "随它去吧",
+  en: "" },
+{
+  zh: "可能会发生小意外",
+  en: "" },
+{
+  zh: "这是不明智的",
+  en: "" }];
+
+
+exports.default = e;
+
+/***/ }),
+
+/***/ 4:
 /*!***************************************!*\
-  !*** E:/Psycho/UniAppMall/pages.json ***!
+  !*** E:/Psycho/AnswerBook/pages.json ***!
   \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 
 
-/***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
 /***/ })
-]]);
+
+}]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

@@ -17,7 +17,7 @@
 		"prefetch": false
 	},
 	"compileType": "miniprogram",
-	"projectname": "ColorUi%20for%20UniApp",
+	"projectname": "%E7%AD%94%E6%A1%88%E4%B9%8B%E4%B9%A62",
 	"qqappid": "1110391088",
 	"qqLibVersion": "1.6.3",
 	"scripts": {},
@@ -34,8 +34,11 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"list": []
+		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"name": "表单",

@@ -4558,82 +4558,6 @@ scroll-view.cu-steps .cu-item {
 .cuIcon-btn:before {
 	content: "\e601";
 }
-@font-face {
-  font-family: 'iconfont';  /* project id 1913195 */
-  src: url('https://at.alicdn.com/t/font_1913195_iobx7z0iayk.eot');
-  src: url('https://at.alicdn.com/t/font_1913195_iobx7z0iayk.eot?#iefix') format('embedded-opentype'),
-  url('https://at.alicdn.com/t/font_1913195_iobx7z0iayk.woff2') format('woff2'),
-  url('https://at.alicdn.com/t/font_1913195_iobx7z0iayk.woff') format('woff'),
-  url('https://at.alicdn.com/t/font_1913195_iobx7z0iayk.ttf') format('truetype'),
-  url('https://at.alicdn.com/t/font_1913195_iobx7z0iayk.svg#iconfont') format('svg');
-}
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon-huacai-:before {
-  content: "\e601";
-}
-.icon-dangao-:before {
-  content: "\e602";
-}
-.icon-guantou-:before {
-  content: "\e603";
-}
-.icon-huluobu-:before {
-  content: "\e604";
-}
-.icon-jidan-:before {
-  content: "\e605";
-}
-.icon-nailao-:before {
-  content: "\e606";
-}
-.icon-sanjiaosanmingzhi-:before {
-  content: "\e607";
-}
-.icon-jitui-:before {
-  content: "\e608";
-}
-.icon-kafei-:before {
-  content: "\e609";
-}
-.icon-mian-:before {
-  content: "\e60a";
-}
-.icon-tangguo-:before {
-  content: "\e60b";
-}
-.icon-ningmeng-:before {
-  content: "\e60c";
-}
-.icon-tiantianquan-:before {
-  content: "\e60d";
-}
-.icon-xican-:before {
-  content: "\e60e";
-}
-.icon-xigua-:before {
-  content: "\e60f";
-}
-.icon-xuegao-:before {
-  content: "\e610";
-}
-.icon-yinliao-:before {
-  content: "\e611";
-}
-.icon-bingqilin-:before {
-  content: "\e612";
-}
-.icon-bao-:before {
-  content: "\e613";
-}
-.icon-changbao-:before {
-  content: "\e614";
-}
 .nav-list {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -4756,5 +4680,31 @@ scroll-view.cu-steps .cu-item {
 		-webkit-transform: translateY(0px);
 		        transform: translateY(0px);
 }
+}
+
+.page {
+  height: 100vh;
+  padding-bottom: 150rpx;
+  background: #1e1a19;
+}
+.page .bg-light {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+}
+.page .bg-book {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  z-index: 2;
+}
+.page .btn-box {
+  position: absolute;
+  top: 70%;
+  left: 15%;
+  width: 70%;
+  z-index: 2;
 }
 

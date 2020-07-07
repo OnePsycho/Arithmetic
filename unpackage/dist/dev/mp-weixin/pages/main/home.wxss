@@ -1,57 +1,26 @@
 .page {
   height: 100vh;
   padding-bottom: 150rpx;
-  background: #fff;
+  background: #1e1a19;
 }
-.page .page-header {
+.page .bg-light {
   position: absolute;
-  top: 4%;
-  left: 0;
-  z-index: 999;
-  width: 70%;
-}
-.page .cu-bar .search-form {
-  height: 56rpx;
-  line-height: 40rpx;
-}
-.page .title-header {
-  display: -webkit-flex;
-  display: -webkit-box;
-  display: flex;
-  height: 120rpx;
-  font-size: 40rpx;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-          align-items: center;
-  -webkit-justify-content: center;
-  -webkit-box-pack: center;
-          justify-content: center;
-  font-weight: bold;
-  background-image: url(https://cdn.nlark.com/yuque/0/2019/png/280373/1570758062258-assets/web-upload/1274f32f-78f4-409c-b7be-b70da5e379d8.png);
-  background-size: cover;
-}
-.page .title-header .title-text {
-  background-image: -webkit-linear-gradient(0deg, #ff8a34, #FBBD12);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.page .products-box {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
-}
-.page .products-box .padding-xs {
-  width: 50%;
-}
-.page .cu-card image {
+  top: 10%;
+  left: 5%;
   width: 90%;
-  margin-left: 5%;
-  margin-top: 20rpx;
-  border-radius: 5px;
 }
-.bg-image {
-  width: 100% !important;
+.page .bg-book {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  z-index: 2;
+}
+.page .btn-box {
+  position: absolute;
+  top: 70%;
+  left: 15%;
+  width: 70%;
+  z-index: 2;
 }
 
