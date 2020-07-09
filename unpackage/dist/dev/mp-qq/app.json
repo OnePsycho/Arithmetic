@@ -1,16 +1,15 @@
 {
   "pages": [
-    "pages/main/home",
-    "pages/entry/home",
-    "pages/answer/home"
+    "pages/welcome/home",
+    "pages/main/home"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#0081ff",
-    "navigationBarTitleText": "人生答案之书",
-    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#333",
+    "navigationBarTitleText": "速算王者",
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
-    "base-main": "/pages/main/home"
+    "base-main": "/pages/main/home",
+    "cu-custom": "/colorui/components/cu-custom"
   }
 }

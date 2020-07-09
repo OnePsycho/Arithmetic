@@ -18,7 +18,7 @@
 		<view class="calc-content">
 			<view class="calc-content-question">
 				<span>{{ numA }}</span>
-				<span> - </span>
+				<span> {{ type === 'twoAdd' || type === 'threeAdd' ? '+' : type === 'twoReduce' ? '-' : 'x' }} </span>
 				<span>{{ numB }}</span>
 			</view>
 			<view class="calc-content-answer">
@@ -56,7 +56,10 @@
 </template>
 
 <script>
-	import list from '../../utils/list.js'
+	import listTwoReduce from '../../utils/list-two-reduce.js'
+	import listTwoAdd from '../../utils/list-two-add.js'
+	import listTwoRide from '../../utils/list-two-ride.js'
+	import listThreeAdd from '../../utils/list-three-add.js'
 	export default {
 
 		data() {
@@ -68,6 +71,8 @@
 				numA:null,
 				numB:null,
 				count:10,
+				nums:null,
+				type:null,
 				min:0,
 				minStr:'',
 				second:0,
@@ -79,7 +84,12 @@
 				questionList:[]
 			};
 		},
+		onLoad(options) {
+			this.type = options.type
+			this.count = options.count
+		},
 		created() {
+			let list = this.type === 'twoAdd' ? listTwoAdd : this.type === 'twoReduce' ? listTwoReduce : this.type === 'twoRide' ? listTwoRide : listThreeAdd
 			this.questionList = this.getRandomArrayElements(list.default,this.count)
 			this.numA = this.questionList[0].a
 			this.numB = this.questionList[0].b
