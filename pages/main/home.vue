@@ -49,6 +49,9 @@
 				<view class="cu-bar bg-white">
 					<view class="action margin-0 flex-sub text-green solid-left" @tap="hideModal">取消</view>
 					<view class="action margin-0 flex-sub  solid-left" @tap="onConfirm">重新挑战</view>
+					<view class="action margin-0 flex-sub  solid-left">
+						<button open-type="share">分享给好友</button>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -85,18 +88,49 @@
 			};
 		},
 		onLoad(options) {
-			this.type = options.type
-			this.count = options.count
+			if(options) {
+				this.type = options.type
+				this.count = options.count
+				this.init()
+			}
 		},
-		created() {
-			let list = this.type === 'twoAdd' ? listTwoAdd : this.type === 'twoReduce' ? listTwoReduce : this.type === 'twoRide' ? listTwoRide : listThreeAdd
-			this.questionList = this.getRandomArrayElements(list.default,this.count)
-			this.numA = this.questionList[0].a
-			this.numB = this.questionList[0].b
-			clearInterval(this.timer)
-			this.timer = setInterval(this.show,10)
+		created(options) {
+			if(options) {
+				this.type = options.type
+				this.count = options.count
+				this.init()
+			}
+		},
+		onShareAppMessage(res) {
+			if (res.from === 'button') {
+			    let typeStr = this.type === 'twoAdd' ? '两位数加法' : this.type === 'twoReduce' ? '两位数减法' : this.type === 'twoRide' ? '两位数乘法' : '三位数加法'
+			      return {
+			        title: this.count + '道' + typeStr  + '速算我只用了 ' + this.minStr + ':' + this.secStr + ':' + this.msStr + ' 就完成了，你呢？',
+			        imageUrl: 'https://onepsycho.bj.bcebos.com/bg-share.png',
+			        path: '/pages/welcome/home'
+			      }
+			  } else if (res.from === 'menu'){
+				   return {
+					 title: '速算王者-你速算有我厉害吗?',
+					 imageUrl: 'https://onepsycho.bj.bcebos.com/bg-share.png',
+					 path: '/pages/welcome/home'
+				   }
+			  }
+			
+		},
+		onShareTimeline(){
+			
 		},
 		methods: {
+			init(){
+				let list = this.type === 'twoAdd' ? listTwoAdd : this.type === 'twoReduce' ? listTwoReduce : this.type === 'twoRide' ? listTwoRide : listThreeAdd
+				this.questionList = this.getRandomArrayElements(list.default,this.count)
+				this.numA = this.questionList[0].a
+				this.numB = this.questionList[0].b
+				clearInterval(this.timer)
+				this.timer = setInterval(this.show,10)
+			},
+			
 			hideModal(){
 				this.isShowModal = false
 			},
@@ -175,8 +209,6 @@
 			    }
 			    return shuffled.slice(min);
 			}
-		},
-		mounted() {
 		},
 		destroyed() {
 			clearInterval(this.timer)
@@ -274,6 +306,26 @@
 				color:#585858;
 				border: .5px solid #e0e0e0;
 				margin: -.5px;
+			}
+		}
+		
+		.cu-bar{
+			button{
+				padding: 0;
+				border: none;
+				border-radius: 0;
+				height: 19px;
+				font-size: 14px;
+				color:#666;
+				background: none;
+				font-family: 'myFont';
+				line-height: normal;
+				
+				&::after{
+					border: none;
+					border-color: #d1d1d1;
+					border-radius: 0;
+				}
 			}
 		}
 	}

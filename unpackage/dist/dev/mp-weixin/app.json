@@ -6,12 +6,12 @@
   "subPackages": [],
   "window": {
     "navigationBarBackgroundColor": "#333",
-    "navigationBarTitleText": "速答王者",
+    "navigationBarTitleText": "速算王者",
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
     "base-main": "/pages/main/home",
     "cu-custom": "/colorui/components/cu-custom"
   },
-  "sitemapLocation": "sitemap63.json"
+  "sitemapLocation": "sitemap98.json"
 }

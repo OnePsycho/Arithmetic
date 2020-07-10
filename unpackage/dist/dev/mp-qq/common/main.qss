@@ -4793,4 +4793,20 @@ scroll-view.cu-steps .cu-item {
   border: 0.5px solid #e0e0e0;
   margin: -0.5px;
 }
+.page .cu-bar button {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  height: 19px;
+  font-size: 14px;
+  color: #666;
+  background: none;
+  font-family: 'myFont';
+  line-height: normal;
+}
+.page .cu-bar button::after {
+  border: none;
+  border-color: #d1d1d1;
+  border-radius: 0;
+}
 

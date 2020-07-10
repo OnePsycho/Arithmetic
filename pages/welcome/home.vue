@@ -5,9 +5,11 @@
 			<image src="../../static/myLogo.png" mode="widthFix"></image>
 		</view>
 		<view class="btn-start">
-			<image src="../../static/btn_share.png" mode="widthFix"></image>
-			<image src="../../static/btn_rank.png" mode="widthFix"  @click="onShowRank"></image>
-			<image src="../../static/btn_start.png" mode="widthFix" @click="onStart"></image>
+			<image class="btns-item" src="../../static/btn_start.png" mode="widthFix" @click="onStart"></image>
+			<image class="btns-item" src="../../static/btn_rank.png" mode="widthFix" @click="onShowRank"></image>
+			<button open-type="share">
+				<image src="../../static/btn_share.png" mode="widthFix" @click="onShare"></image>
+			</button>
 		</view>
 		<view class="cu-modal" :class="isShowModal?'show':''" @tap="hideModal">
 			<view class="cu-dialog" @tap.stop="">
@@ -44,10 +46,27 @@
 			// })
 			// console.log(JSON.stringify(arr2))
 		},
+		onShareAppMessage() {
+		      return {
+		        title: '速算王者-你速算有我厉害吗?',
+		        imageUrl: 'https://onepsycho.bj.bcebos.com/bg-share.png',
+		        path: '/pages/welcome/home'
+		      }
+		},
+		onShareTimeline(){
+			return {
+			  title: '速算王者-你速算有我厉害吗?'
+			}
+		},
 		methods: {
 			hideModal() {
 				this.isShowModal = false
 			},
+
+			onShare() {
+				
+			},
+
 			getRandom(min, max) {
 				min = Math.ceil(min);
 				max = Math.floor(max);
@@ -56,11 +75,11 @@
 			onStart() {
 				this.isShowModal = true
 			},
-			
-			onShowRank(){
+
+			onShowRank() {
 				alert('即将开放！')
 			},
-			
+
 			goStart(type, count) {
 				this.isShowModal = false
 				uni.showLoading({
@@ -101,9 +120,9 @@
 			}
 
 			.logo-image {
-				width: 40%;
-				margin-left: 30%;
-				margin-top: 20%;
+				width: 34%;
+				margin-left: 33%;
+				margin-top: 15%;
 			}
 		}
 
@@ -115,11 +134,33 @@
 			bottom: 10%;
 			left: 0;
 
-			image {
+			.btns-item {
 				width: 40%;
 				margin-left: 30%;
 				border: 1px solid #d1d1d1;
 				margin-bottom: 30rpx;
+			}
+			
+			button{
+				width: 40%;
+				margin-left: 30%;
+				padding: 0;
+				border: none;
+				border-radius: 0;
+				height: 119rpx;
+				background: none;
+				
+				&::after{
+					border: none;
+					border-color: #d1d1d1;
+					border-bottom: 1px solid #d1d1d1;
+					border-radius: 0;
+				}
+				
+				image{
+					width: 100%;
+					border: 1px solid #d1d1d1;
+				}
 			}
 
 			&-txt {
@@ -158,8 +199,8 @@
 		background: #868686;
 		color: #fff;
 	}
-	
-	.type-tips{
+
+	.type-tips {
 		width: 60%;
 		margin-left: 20%;
 		color: #888888;
